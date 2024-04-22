@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #0b84d4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,7 +9,7 @@ body {
     position: relative;
     height: 100vh;
     margin-top: -150px;
-    background-image: url(./fondo.png);
+    /* background-image: url(./fondo.png); */
 }
 
 .container {

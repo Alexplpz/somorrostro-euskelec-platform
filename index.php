@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
+        <!-- <img src=./logosomo.jpg> -->
         <h3 class="titulos">Plataforma de Somorrostro</h3>
         <h4 class="subtitulos">Euskelec</h4>
         <?php if (isset($error_message)): ?>
