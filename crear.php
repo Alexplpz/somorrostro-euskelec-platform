@@ -38,12 +38,12 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de alumnos</title>
+    <title>Registro de usuarios</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Registro de alumnos</h2>
+        <h2>Registro de usuarios</h2>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <label for="numclase">Nombre completo:</label>
             <input type="text" name="nombre" required>
