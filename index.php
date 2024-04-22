@@ -1,5 +1,7 @@
 <?php
 session_start();
+session_destroy();
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -24,9 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($row["password"] == $password) {
         $_SESSION['name'] = $row["name"];
         if ($row["rank"] != 0) {
+            $_SESSION['status'] = 1;
             header('Location: inicioadmin.php');
             exit();
         } else {
+            $_SESSION['status'] = 0;
             header('Location: iniciobase.php');
             exit();
         }
@@ -62,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" required>
 
             <input type="submit" value="Iniciar Sesión">
-            <h4>Alejandro Peña</h4>
         </form>
     </div>
 </body>

@@ -11,6 +11,7 @@
     <ul class="lista-inicio">
         <li><a href="descargas.php">Descargas</a></li>
         <li><a href="tutoriales.php">Tutoriales</a></li>
+        <li><a href="inicioadmin.php">Soy Administrador</a></li>
     </ul>
 </body>
 </html>

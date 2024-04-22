@@ -3,7 +3,7 @@ $servername = "127.0.0.1";
 $port = "3305";
 $username = "root";
 $password = "";
-$dbname = "smr2";
+$dbname = "euskelec";
 
 $conn = new mysqli($servername . ':' . $port, $username, $password, $dbname);
 
@@ -15,18 +15,18 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["activar"])) {
     $usernameGetted = $_POST["usernameGetted"];
 
-    $sql = "UPDATE alumnos SET rango = 1 WHERE username = '$usernameGetted'";
+    $sql = "UPDATE users SET rank = 1 WHERE username = '$usernameGetted'";
     $conn->query($sql);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["desactivar"])) {
     $usernameGetted = $_POST["usernameGetted"];
 
-    $sql = "UPDATE alumnos SET rango = 0 WHERE username = '$usernameGetted'";
+    $sql = "UPDATE users SET rank = 0 WHERE username = '$usernameGetted'";
     $conn->query($sql);
 }
 
-$sql = "SELECT numclase, nombre, rango, apellido, username FROM alumnos";
+$sql = "SELECT username, name, rank FROM users";
 $result = $conn->query($sql);
 
 ?>
@@ -56,12 +56,13 @@ $result = $conn->query($sql);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            margin-top: 0px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 0px;
         }
 
         table, th, td {
@@ -91,23 +92,21 @@ $result = $conn->query($sql);
 
         <table>
             <tr>
-                <th>Número de clase</th>
+                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
                 <th>Rango</th>
-                <th>Convertir en profe</th>
-                <th>Convertir en alumno</th>
+                <th>Convertir en Administrador</th>
+                <th>Convertir en Usuario</th>
             </tr>
 
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo $row["numclase"]; ?></td>
-                    <td><?php echo $row["nombre"]; ?></td>
-                    <td><?php echo $row["apellido"]; ?></td>
-                    <td><?php if ($row["rango"] == 1) {
-                        echo "Profesor";
+                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["name"]; ?></td>
+                    <td><?php if ($row["rank"] != 0) {
+                        echo "Administrador";
                     } else {
-                        echo "Alumno";
+                        echo "Usuario";
                     }?></td>                    
                     <td>
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -124,7 +123,7 @@ $result = $conn->query($sql);
                 </tr>
             <?php endwhile; ?>
         </table>
-        <button class="button-3" onclick="window.location.href='index.php'">Volver a la pagina inicial</button>
+        <button class="button-3" onclick="window.location.href='iniciobase.php'">Volver a la pagina inicial</button>
     </div>
 
     <?php $conn->close(); ?>

@@ -3,7 +3,7 @@ $servername = "127.0.0.1";
 $port = "3305";
 $username = "root";
 $password = "";
-$dbname = "SMR2";
+$dbname = "euskelec";
 $modalMessage = "Ten cuidado con el registro, no se puede rehacer";
 $conn = new mysqli($servername . ':' . $port, $username, $password, $dbname);
 
@@ -14,15 +14,12 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Datos recibidos del formulario embedido abajo --> Ususario, Contraseña, Nombre Completo y Rango añadidos como: username, password, name, rank.
-    $numclase = $_POST["numclase"];
     $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
-    $grupo = $_POST["grupo"];
-    $mail = $_POST["mail"];
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $rank = $_POST["rank"];
 
-    $sql = "INSERT INTO alumnos (numclase, nombre, apellido, grupo, mail, username, password) VALUES ('$numclase', '$nombre', '$apellido', '$grupo', '$mail', '$username', '$password')";
+    $sql = "INSERT IGNORE INTO users (name, username, password, rank) VALUES ('$nombre', '$username', '$password', '$rank')";
 
     if ($conn->query($sql) === TRUE) {
         $modalMessage = "Datos insertados correctamente";
@@ -48,20 +45,8 @@ $conn->close();
     <div class="container">
         <h2>Registro de alumnos</h2>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-            <label for="numclase">Nº:</label>
-            <input type="text" name="numclase" required>
-
-            <label for="nombre">Nombre:</label>
+            <label for="numclase">Nombre completo:</label>
             <input type="text" name="nombre" required>
-
-            <label for="apellido">Apellidos:</label>
-            <input type="text" name="apellido" required>
-
-            <label for="grupo">Grupo:</label>
-            <input type="text" name="grupo" required>
-
-            <label for="mail">Mail:</label>
-            <input type="text" name="mail" required>
             
             <label for="username">Usuario:</label>
             <input type="text" name="username" required>
@@ -69,7 +54,10 @@ $conn->close();
             <label for="password">Contraseña:</label>
             <input type="text" name="password" required>
 
-            <input type="submit" value="Registrar Alumno">
+            <label for="quantity">Rango (Entre 0 y 2):</label>
+            <input type="number" id="quantity" name="rank" min="0" max="2">
+
+            <input type="submit" value="Registrar usuario nuevo">
         </form>
         <button class="button-3" onclick="window.location.href='index.php'">Volver a la pagina inicial</button>
     </div>

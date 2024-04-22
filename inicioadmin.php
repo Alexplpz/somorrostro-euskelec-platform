@@ -13,8 +13,16 @@
         <li><a href="eliminar.php">Eliminar cuenta</a></li>
         <li><a href="lista.php">Lista de usuarios</a></li>
         <li><a href="crearhost.php">Crear equipo</a></li>
+        <li><a href="./index.php">Cerrar sesión</a></li>
     </ul>
     <!-- <h3 class="rol-inicio">Tu rol es profesor</h3> -->
 
 </body>
 </html>
+
+<?php 
+    if ($_SESSION["status"] == 0 ) {
+        header('Location: iniciobase.php');
+        
+    }
+?>
