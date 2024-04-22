@@ -11,7 +11,7 @@
     <ul class="lista-inicio">
         <li><a href="crear_dispositivo.php">Crear dispositivo nuevo</a></li>
         <li><a href="eliminar_dispositivo.php">Eliminar un dispositivo</a></li>
-        <li><a href="gestion_dispositivos.php">Encender o ejecutar dispositivos</a></li>
+        <li><a href="lista_dispositivo.php">Encender o ejecutar dispositivos</a></li>
         <li><a href="./iniciobase.php">Volver al inicio</a></li>
         <li><a href="./index.php">Cerrar sesión</a></li>
     </ul>

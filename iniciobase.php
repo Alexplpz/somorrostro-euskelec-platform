@@ -9,8 +9,8 @@
 <body>
     <h2 class="nombre-inicio">Bienvenido/a <?php session_start(); echo $_SESSION['name']; ?></h2>
     <ul class="lista-inicio">
-        <li><a href="descargas.php">Descargas</a></li>
-        <li><a href="tutoriales.php">Tutoriales</a></li>
+        <li><a href="gestion_dispositivos.php">Gestionar dispositivos</a></li>
+        <li><a href="./index.php">Cerrar sesión</a></li>
         <li><a href="inicioadmin.php">Soy Administrador</a></li>
     </ul>
 </body>
