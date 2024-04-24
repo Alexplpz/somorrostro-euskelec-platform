@@ -9,7 +9,10 @@ body {
     position: relative;
     height: 100vh;
     margin-top: -150px;
-    /* background-image: url(./fondo.png); */
+    background-image: url(./fondo.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
 }
 
 .container {
@@ -21,17 +24,26 @@ body {
     margin-top: 400px;
 }
 
-.titulos{
+x-title{
     color: #333;
-    border-radius: 10px;
     text-align: center;
+    display: block;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom:15px;
+    font-weight: bold;
+    unicode-bidi: isolate;
 }
 
-.subtitulos {
+x-subtitle {
     color: #333;
-    border-radius: 2px;
     text-align: center;
-    font-size: 15px;
+    color: #333;
+    text-align: center;
+    display: block;
+    font-size: 1.27em;
+    font-weight: bold;
+    unicode-bidi: isolate;
 }
 
 h4 {
@@ -47,6 +59,10 @@ ul {
     margin: 20px ;
 }
 
+.containerLogo{
+    width: 355px;
+    height: 200px;
+}
 
 .nombre-inicio{
    width: max-content;
@@ -99,7 +115,7 @@ a {
 }
 
 a:hover {
-    background-color: #45a049;
+    background-color: #4598a0;
 }
 form {
     margin-top: 20px;
