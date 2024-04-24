@@ -1,12 +1,8 @@
 <?php
-$servername = "127.0.0.1";
-$port = "3305";
-$username = "root";
-$password = "";
-$dbname = "smr2";
-
+require_once('./classes.php');
+$BDClass = new BaseDedatos;
+$conn = new mysqli($BDClass->servername. ':' . $BDClass->port, $BDClass->db_username, $BDClass->db_password, $BDClass->dbname);;
 $modalMessage = "Inserta el numero de placa del policia que quieras dar de baja";
-$conn = new mysqli($servername . ':' . $port, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);

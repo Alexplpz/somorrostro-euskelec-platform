@@ -1,12 +1,8 @@
 <?php
-$servername = "127.0.0.1";
-$port = "3305";
-$username = "root";
-$password = "";
-$dbname = "euskelec";
-
-$modalMessage = "Inserta la IP del dispositivo que quieras dar de baja";
-$conn = new mysqli($servername . ':' . $port, $username, $password, $dbname);
+require_once('./classes.php');
+$BDClass = new BaseDedatos;
+$conn = new mysqli($BDClass->servername. ':' . $BDClass->port, $BDClass->db_username, $BDClass->db_password, $BDClass->dbname);;
+$modalMessage = "El registro no se puede editar, solo eliminar, ten cuidado.";
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);

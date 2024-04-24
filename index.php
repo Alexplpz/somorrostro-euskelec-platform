@@ -3,25 +3,18 @@ session_start();
 session_destroy();
 session_start();
 
+require_once('./classes.php');
+$BDClass = new BaseDedatos;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $password = isset($_POST['password']);
-
-    $servername = "127.0.0.1";
-    $port = "3305";
-    $db_username = "root";
-    $db_password = "";
-    $dbname = "euskelec";
-
-    $conn = new mysqli($servername . ':' . $port, $db_username, $db_password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
- 
+    
+    $conn = new mysqli($BDClass->servername. ':' . $BDClass->port, $BDClass->db_username, $BDClass->db_password, $BDClass->dbname);;
     // Utilizar consultas preparadas para evitar la inyección de SQL
     $sql = "SELECT password, rank, name FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
+    
     while ($row = $result->fetch_assoc())
     if ($row["password"] == $password) {
         $_SESSION['name'] = $row["name"];
