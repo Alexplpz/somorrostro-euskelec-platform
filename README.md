@@ -6,4 +6,4 @@ A tener en cuenta: </br>
 🏡 Variables de sesión: "name": nombre completo, ... </br>
 
 
-![logosomo](https://github.com/Alexplpz/somorrostro-euskelec-platform/assets/167088356/26eb86aa-5aec-421f-8763-6bbacee2fbdb)
+![logosomo (Custom)](https://github.com/Alexplpz/somorrostro-euskelec-platform/assets/167088356/4e63195c-0ad7-4d48-b753-1c8253affff5)
