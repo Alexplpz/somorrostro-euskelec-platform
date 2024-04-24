@@ -11,14 +11,15 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Datos recibidos del formulario embedido abajo --> Ususario, Contraseña, Nombre Completo y Rango añadidos como: username, password, name, rank.
-    $nombre_dispositivo = $_POST["nombre"];
-    $ip = $_POST["IP"];
-    $file_name = $_POST["file_name"] . ".sh";
+    $nombre = $_POST["nombre"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $rank = $_POST["rank"];
 
-    $sql = "INSERT IGNORE INTO devices (display_name, ip, file_name) VALUES ('$nombre_dispositivo', '$ip', '$file_name')";
+    $sql = "INSERT IGNORE INTO users (name, username, password, rank) VALUES ('$nombre', '$username', '$password', '$rank')";
 
     if ($conn->query($sql) === TRUE) {
-        $modalMessage = "Datos insertados <br> El script a usar es: <strong>" . $file_name;
+        $modalMessage = "Datos insertados correctamente";
     } else {
         $modalMessage = "Error al insertar datos: " . $conn->error;
     }
@@ -34,23 +35,26 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de dispositivos</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Registro de usuarios</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Registro de dispositivos</h2>
+        <h2>Registro de usuarios</h2>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-            <label for="numclase">Nombre a mostrar:</label>
+            <label for="numclase">Nombre completo:</label>
             <input type="text" name="nombre" required>
             
-            <label for="username">Nombre del script a ejecutar:</label>
-            <input type="text" name="file_name" required>
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" required>
 
-            <label for="password">IP de la maquina final:</label>
-            <input type="text" name="IP" required>
+            <label for="password">Contraseña:</label>
+            <input type="text" name="password" required>
 
-            <input type="submit" value="Registrar dispositivo nuevo">
+            <label for="quantity">Rango (Entre 0 y 2):</label>
+            <input type="number" id="quantity" name="rank" min="0" max="2">
+
+            <input type="submit" value="Registrar usuario nuevo">
         </form>
         <button class="button-3" onclick="window.location.href='index.php'">Volver a la pagina inicial</button>
     </div>
@@ -60,7 +64,6 @@ $conn->close();
         <button class="button-3" onclick="closeModal()">Cerrar</button>
     </div>
     <div id="overlay" class="overlay"></div>
-    <script src="script.js"></script>
-</body>
+    <script src="../js/script.js"></script></body>
 </html>
 
