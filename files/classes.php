@@ -7,7 +7,5 @@ class BaseDedatos
     public   $db_username = "root";
     public  $db_password = "";
     public  $dbname = "euskelec";     
-}
-    
-   
+};
 

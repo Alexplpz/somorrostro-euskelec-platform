@@ -12,10 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Datos recibidos del formulario embedido abajo --> Ususario, Contraseña, Nombre Completo y Rango añadidos como: username, password, name, rank.
     $nombre_dispositivo = $_POST["nombre"];
+    $mac_address = $_POST["MAC"];
     $ip = $_POST["IP"];
     $file_name = $_POST["file_name"] . ".sh";
 
-    $sql = "INSERT IGNORE INTO devices (display_name, ip, file_name) VALUES ('$nombre_dispositivo', '$ip', '$file_name')";
+    $sql = "INSERT IGNORE INTO devices (display_name, ip, file_name, mac_address) VALUES ('$nombre_dispositivo', '$ip', '$file_name', '$mac_address')";
 
     if ($conn->query($sql) === TRUE) {
         $modalMessage = "Datos insertados <br> El script a usar es: <strong>" . $file_name;
@@ -47,8 +48,11 @@ $conn->close();
             <label for="username">Nombre del script a ejecutar:</label>
             <input type="text" name="file_name" required>
 
-            <label for="password">IP de la maquina final:</label>
+            <label for="password">IP de la maquina:</label>
             <input type="text" name="IP" required>
+
+            <label for="password">MAC de la maquina:</label>
+            <input type="text" name="MAC" required>
 
             <input type="submit" value="Registrar dispositivo nuevo">
         </form>

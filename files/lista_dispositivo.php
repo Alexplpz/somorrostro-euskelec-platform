@@ -10,12 +10,12 @@ if ($conn->connect_error) {
 
 
 
-$sql = "SELECT identifier, ip, file_name, display_name FROM devices";
+$sql = "SELECT identifier, ip, file_name, display_name, mac_address FROM devices";
 $result = $conn->query($sql);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["encender"])) {
-    $ipGetted = $_POST["ipGetted"];
-    shell_exec("start; echo " . $ipGetted);
+    $macGetted = $_POST["macGetted"]; 
+    shell_exec("start; ..\js\scriptWOL.bat " . $macGetted);
 
 }
 
@@ -89,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ejecutar"])) {
             <tr>
                 <th>Nombre</th>
                 <th>IP</th>
+                <th>MAC</th>
                 <th>Archivo asignado</th>
                 <th>Encender maquina</th>
                 <th>Ejecutar script</th>
@@ -98,10 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ejecutar"])) {
                 <tr>
                     <td><?php echo $row["display_name"]; ?></td>
                     <td><?php echo $row["ip"]; ?></td>
+                    <td><?php echo $row["mac_address"]; ?></td>
                     <td><?php echo $row["file_name"]; ?></td>                  
                     <td>
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                            <input type="hidden" name="ipGetted" value="<?php echo $row["ip"]; ?>">
+                            <input type="hidden" name="macGetted" value="<?php echo $row["mac_address"]; ?>">
                             <button class="button-3" type="submit" name="encender">Encender</button>
                         </form>
                     </td>
