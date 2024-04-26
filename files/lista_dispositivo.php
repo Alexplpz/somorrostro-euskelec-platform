@@ -16,6 +16,7 @@ $result = $conn->query($sql);
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["encender"])) {
     $macGetted = $_POST["macGetted"]; 
     shell_exec("start; ..\js\scriptWOL.bat " . $macGetted);
+    $modalMessage = "Has arrancado con exito el ordenador con MAC: <strong>" . $macGetted;
 
 }
 
@@ -118,7 +119,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ejecutar"])) {
         </table>
         <button class="button-3" onclick="window.location.href='iniciobase.php'">Volver a la pagina inicial</button>
     </div>
-
+  <!-- Modal y overlay -->
+  <div id="modal" class="modal">
+        <p id="modal-message"><?php echo $modalMessage; ?></p>
+        <button class="button-3" onclick="closeModal()">Cerrar</button>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <script src="../js/script.js"></script></body>
     <?php $conn->close(); ?>
 </body>
 </html>
